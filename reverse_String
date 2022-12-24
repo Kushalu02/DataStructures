@@ -1,0 +1,61 @@
+
+#include <stdio.h>
+#include <stdlib.h>
+#define MAX 20
+
+
+typedef struct STACK
+{
+    int top;
+    char a[MAX];
+}STACK;
+
+void init(STACK *s)
+{
+    s->top = -1;
+}
+
+void push(STACK *s, char c)
+{
+    s->top++;
+    s->a[s->top]= c;
+}
+
+char pop(STACK *s)
+{
+    char a = s->a[s->top];
+    s->top--;
+    return a;
+}
+
+int isEmpty(STACK *s)
+{
+    return s->top == -1;
+}
+
+int main()
+{
+    char inputstr[MAX];
+    printf("Enter string \n");
+    scanf("%s",inputstr);
+    //printf("\nfff");
+    STACK s;
+    //printf("\nff");
+    init(&s);
+    for(int i = 0; inputstr[i]!= '\0';i++)
+        push(&s,inputstr[i]);
+        
+    char outputstr[MAX];
+    for(int i = 0; i<MAX; i++)
+    {
+        outputstr[i] = '\0';
+    }
+    int j=0;
+    
+    while(!isEmpty(&s))
+    {
+        outputstr[j++]=pop(&s);
+    }
+    printf("%s\n",outputstr);
+    return 0;
+}
